@@ -16,6 +16,8 @@
                     <span style="color: var(--accent-teal);">100% Verified Quality</span>
                 </div>
 
+
+
                 <h1 class="hero-headline">
                     Discover High-Quality <br />
                     <span class="gradient-text">Digital Assets &amp; Templates</span>
