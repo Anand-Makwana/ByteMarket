@@ -1,0 +1,221 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="ByteMarket.Site" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="ByteMarket — Premium Digital Products Marketplace. Discover website templates, UI kits, vector icons, 3D graphics and themes." />
+    <meta name="author" content="ByteMarket" />
+    <meta name="theme-color" content="#ffffff" />
+    <title><%: Page.Title %> - ByteMarket Digital Products</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- ByteMarket Light Mode Design System -->
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- Vector SVG Icons -->
+    <script src='<%= ResolveUrl("~/js/icons.js") %>'></script>
+
+    <!-- Global App Configuration -->
+    <script>
+        window.ByteMarketConfig = {
+            baseUrl: '<%= ResolveUrl("~/") %>'
+        };
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" onsubmit="return false;">
+        <!-- Top Promotional Announcement Bar -->
+        <div class="top-promo-bar">
+            <div class="container">
+                <span class="badge">Special Offer</span>
+                <span>Get <strong>30% OFF</strong> all UI kits and Website templates this week with code <strong>BYTE30</strong></span>
+            </div>
+        </div>
+
+        <!-- Sticky Site Header -->
+        <header class="site-header">
+            <div class="container container-wide">
+                <div class="nav-row">
+                    <!-- Brand Logo -->
+                    <a href='<%= ResolveUrl("~/Default.aspx") %>' class="brand-logo" title="ByteMarket Home">
+                        <div class="brand-icon">BM</div>
+                        <div class="brand-text">Byte<span>Market</span></div>
+                    </a>
+
+                    <!-- Main Navigation Links -->
+                    <nav class="main-nav" id="mainNavLinks">
+                        <a href='<%= ResolveUrl("~/Default.aspx") %>' class="nav-link">Home</a>
+                        <a href='<%= ResolveUrl("~/Products.aspx") %>' class="nav-link">Explore Products</a>
+                        <a href='<%= ResolveUrl("~/Products.aspx?cat=templates") %>' class="nav-link">Templates</a>
+                        <a href='<%= ResolveUrl("~/Products.aspx?cat=uikits") %>' class="nav-link">UI Kits</a>
+                        <a href='<%= ResolveUrl("~/Products.aspx?cat=icons") %>' class="nav-link">Icons</a>
+                        <a href='<%= ResolveUrl("~/Products.aspx?cat=graphics") %>' class="nav-link">3D Graphics</a>
+                    </nav>
+
+                    <!-- Nav Quick Search -->
+                    <div class="nav-search">
+                        <span class="search-icon" style="display: flex; align-items: center;">
+                            <script>document.write(ByteIcons.search);</script>
+                        </span>
+                        <input type="text" id="headerSearchInput" placeholder="Search templates, UI kits, fonts..." />
+                    </div>
+
+                    <!-- Nav Actions (Wishlist, Cart, Account) -->
+                    <div class="nav-actions">
+                        <!-- Wishlist -->
+                        <a href='<%= ResolveUrl("~/User/Wishlist.aspx") %>' class="icon-btn" title="View Wishlist">
+                            <span style="display: flex; align-items: center;">
+                                <script>document.write(ByteIcons.heart);</script>
+                            </span>
+                            <span class="badge-count" id="headerWishlistBadge" style="display: none;">0</span>
+                        </a>
+
+                        <!-- Shopping Cart -->
+                        <a href='<%= ResolveUrl("~/User/Cart.aspx") %>' class="icon-btn" title="View Cart">
+                            <span style="display: flex; align-items: center;">
+                                <script>document.write(ByteIcons.cart);</script>
+                            </span>
+                            <span class="badge-count" id="headerCartBadge" style="display: none;">0</span>
+                        </a>
+
+                        <!-- User Profile Menu -->
+                        <div class="user-dropdown">
+                            <div class="user-trigger" id="userMenuTrigger">
+                                <div class="user-avatar" id="headerUserAvatar">AR</div>
+                                <span class="user-name" id="headerUserName">Alex Rivera</span>
+                                <span style="font-size: 0.75rem; color: var(--text-muted);">&#9662;</span>
+                            </div>
+
+                            <div class="dropdown-menu" id="userDropdownMenu">
+                                <div style="padding: 10px 18px 6px 18px;">
+                                    <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Switch Demo Portal</div>
+                                </div>
+                                <a href='<%= ResolveUrl("~/User/BuyerDashboard.aspx") %>' onclick="ByteMarketStore.switchRole('buyer', event)">
+                                    Buyer Dashboard
+                                </a>
+                                <a href='<%= ResolveUrl("~/Seller/SellerDashboard.aspx") %>' onclick="ByteMarketStore.switchRole('seller', event)">
+                                    Seller Dashboard
+                                </a>
+                                <a href='<%= ResolveUrl("~/Admin/AdminDashboard.aspx") %>' onclick="ByteMarketStore.switchRole('admin', event)">
+                                    Admin Portal
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href='<%= ResolveUrl("~/Login.aspx") %>'>
+                                    Login / Register
+                                </a>
+                                <a href="#" onclick="ByteMarketStore.logout(event); return false;" style="color: var(--danger);">
+                                    Sign Out
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Hamburger Button -->
+                        <button type="button" class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation">
+                            &#9776;
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Body Content Placeholder -->
+        <main id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <!-- Site Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Column 1: Brand Info -->
+                    <div>
+                        <a href='<%= ResolveUrl("~/Default.aspx") %>' class="brand-logo" style="margin-bottom: 12px; display: inline-flex;">
+                            <div class="brand-icon">BM</div>
+                            <div class="brand-text">Byte<span>Market</span></div>
+                        </a>
+                        <p class="footer-col-desc">
+                            ByteMarket is the premium curated digital products marketplace for developers, designers, and creators worldwide. Discover high quality website templates, UI kits, icons, and 3D graphics.
+                        </p>
+                        <div style="display: flex; gap: 10px; margin-top: 16px;">
+                            <span class="badge badge-teal">Light Theme Only</span>
+                            <span class="badge badge-purple">ASP.NET Web Forms</span>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Marketplace Links -->
+                    <div>
+                        <h4 class="footer-links-title">Marketplace</h4>
+                        <ul class="footer-links-list">
+                            <li><a href='<%= ResolveUrl("~/Products.aspx") %>'>All Products</a></li>
+                            <li><a href='<%= ResolveUrl("~/Products.aspx?cat=templates") %>'>Website Templates</a></li>
+                            <li><a href='<%= ResolveUrl("~/Products.aspx?cat=uikits") %>'>UI &amp; Design Kits</a></li>
+                            <li><a href='<%= ResolveUrl("~/Products.aspx?cat=icons") %>'>Vector Icon Packs</a></li>
+                            <li><a href='<%= ResolveUrl("~/Products.aspx?cat=graphics") %>'>3D Assets &amp; Mockups</a></li>
+                            <li><a href='<%= ResolveUrl("~/Products.aspx?cat=themes") %>'>CMS &amp; Themes</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Portals & Dashboards -->
+                    <div>
+                        <h4 class="footer-links-title">Dashboards</h4>
+                        <ul class="footer-links-list">
+                            <li><a href='<%= ResolveUrl("~/User/BuyerDashboard.aspx") %>'>Buyer Dashboard</a></li>
+                            <li><a href='<%= ResolveUrl("~/Seller/SellerDashboard.aspx") %>'>Seller Hub (Add Product)</a></li>
+                            <li><a href='<%= ResolveUrl("~/Admin/AdminDashboard.aspx") %>'>Admin Management</a></li>
+                            <li><a href='<%= ResolveUrl("~/User/Cart.aspx") %>'>Shopping Cart</a></li>
+                            <li><a href='<%= ResolveUrl("~/User/Wishlist.aspx") %>'>Saved Wishlist</a></li>
+                            <li><a href='<%= ResolveUrl("~/Login.aspx") %>'>Account Access</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Newsletter & Guarantee -->
+                    <div>
+                        <h4 class="footer-links-title">Stay Updated</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px;">
+                            Subscribe for weekly free design drops, code templates, and exclusive promo discounts.
+                        </p>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="email" placeholder="Your email..." class="form-control" style="font-size: 0.88rem; padding: 8px 12px;" />
+                            <button type="button" class="btn btn-teal btn-sm" onclick="ByteMarketStore.showToast('Subscribed to ByteMarket updates!', 'success')">Join</button>
+                        </div>
+                        <div style="margin-top: 18px; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+                            <span style="color: var(--accent-teal); font-weight: bold;">&#10003;</span>
+                            <span>100% Secure Instant Downloads</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom Row -->
+                <div class="footer-bottom">
+                    <div>
+                        &copy; 2026 <strong>ByteMarket</strong> Inc. Built with ASP.NET Web Forms (.NET Framework 4.7.2). Clean Light Mode.
+                    </div>
+                    <div style="display: flex; gap: 20px;">
+                        <a href='<%= ResolveUrl("~/Default.aspx") %>'>Privacy Policy</a>
+                        <a href='<%= ResolveUrl("~/Default.aspx") %>'>Terms of License</a>
+                        <a href='<%= ResolveUrl("~/Default.aspx") %>'>Creator Guidelines</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </form>
+
+    <!-- Global Core Scripts -->
+    <script src='<%= ResolveUrl("~/js/products-data.js") %>'></script>
+    <script src='<%= ResolveUrl("~/js/main.js") %>'></script>
+
+    <asp:ContentPlaceHolder ID="ScriptsContent" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>
