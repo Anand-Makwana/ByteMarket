@@ -71,6 +71,11 @@
     <Content Include="User\Wishlist.aspx" />
     <Content Include="Seller\SellerDashboard.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
+    <Content Include="create_tables.sql" />
+    <Content Include="App_Data\ByteMarket_db.mdf" />
+    <Content Include="App_Data\ByteMarket_db_log.ldf">
+      <DependentUpon>ByteMarket_db.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Site.Master.cs">

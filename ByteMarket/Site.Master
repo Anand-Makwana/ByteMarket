@@ -33,7 +33,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server" onsubmit="return false;">
+    <form id="form1" runat="server">
         <!-- Top Promotional Announcement Bar -->
         <div class="top-promo-bar">
             <div class="container">

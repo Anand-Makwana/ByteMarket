@@ -12,6 +12,13 @@ packages/
 [Dd]ebug/
 [Rr]elease/
 
+# Database data files (locked by LocalDB / Visual Studio)
+*.mdf
+*.ldf
+*.ndf
+App_Data/*.mdf
+App_Data/*.ldf
+
 # OS generated files
 Thumbs.db
 ehthumbs.db

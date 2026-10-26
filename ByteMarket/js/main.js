@@ -194,15 +194,6 @@ const ByteMarketStore = {
 
   init: function() {
     document.addEventListener('DOMContentLoaded', () => {
-      // Prevent standard ASP.NET postback
-      const form = document.getElementById('form1');
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          return false;
-        });
-      }
-
       // Static header badges
       const cartBadge = document.getElementById('headerCartBadge');
       if (cartBadge) {

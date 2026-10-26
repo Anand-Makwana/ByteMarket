@@ -29,86 +29,83 @@
             <!-- Demo Fast-Login Strip -->
             <div style="background: var(--bg-subtle); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px; margin-bottom: 24px;">
                 <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">
-                    Fast Demo One-Click Sign In:
+                    Fast Demo Fill:
                 </div>
                 <div class="demo-account-pills">
-                    <span class="demo-pill" onclick="quickFill('alex.rivera@example.com', 'buyer')">Buyer Account</span>
-                    <span class="demo-pill" onclick="quickFill('marcus.vance@example.com', 'seller')">Creator / Seller</span>
-                    <span class="demo-pill" onclick="quickFill('sarah.admin@bytemarket.io', 'admin')">Admin Account</span>
+                    <span class="demo-pill" onclick="quickFill('alex.rivera@example.com', 'demo12345')">Buyer Demo</span>
+                    <span class="demo-pill" onclick="quickFill('marcus.vance@example.com', 'demo12345')">Seller Demo</span>
+                    <span class="demo-pill" onclick="quickFill('sarah.admin@bytemarket.io', 'demo12345')">Admin Demo</span>
                 </div>
             </div>
 
             <!-- Form: Sign In -->
             <div id="loginFormPanel">
                 <div class="form-group">
-                    <label class="form-label" for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" value="alex.rivera@example.com" />
-                    <div class="invalid-feedback" id="loginEmailErr">Please enter a valid email address.</div>
+                    <label class="form-label" for="<%= txteml.ClientID %>">Email Address</label>
+                    <asp:TextBox ID="txteml" runat="server" TextMode="Email" CssClass="form-control" placeholder="name@example.com"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                        <label class="form-label" for="loginPassword" style="margin-bottom: 0;">Password</label>
-                        <a href="#" onclick="alert('Password reset link simulated sent to your email.'); return false;" style="font-size: 0.82rem;">Forgot password?</a>
+                        <label class="form-label" for="<%= txtpass.ClientID %>" style="margin-bottom: 0;">Password</label>
+                        <a href="#" onclick="alert('Password reset link sent to your email.'); return false;" style="font-size: 0.82rem;">Forgot password?</a>
                     </div>
-                    <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" value="demo12345" />
-                    <div class="invalid-feedback" id="loginPasswordErr">Password must be at least 6 characters.</div>
+                    <asp:TextBox ID="txtpass" runat="server" TextMode="Password" CssClass="form-control" placeholder="••••••••"></asp:TextBox>
                 </div>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
                     <label style="display: flex; align-items: center; gap: 8px; font-size: 0.88rem; cursor: pointer; color: var(--text-secondary);">
-                        <input type="checkbox" id="rememberMe" checked style="accent-color: var(--primary);" />
+                        <input type="checkbox" id="rememberMe" checked="checked" style="accent-color: var(--primary);" />
                         <span>Remember this device</span>
                     </label>
                 </div>
 
-                <button type="button" class="btn btn-primary btn-block btn-lg" id="btnSubmitLogin">
-                    Sign In to ByteMarket
-                </button>
+                <asp:Button ID="btnlogin" runat="server" Text="Sign In to ByteMarket" CssClass="btn btn-primary btn-block btn-lg" OnClick="btnlogin_Click" />
             </div>
 
             <!-- Form: Create Account -->
             <div id="registerFormPanel" style="display: none;">
                 <div class="form-group">
-                    <label class="form-label" for="regName">Full Name</label>
-                    <input type="text" id="regName" class="form-control" placeholder="e.g. Jordan Miller" />
-                    <div class="invalid-feedback" id="regNameErr">Please enter your full name.</div>
+                    <label class="form-label" for="<%= txtregname.ClientID %>">Full Name</label>
+                    <asp:TextBox ID="txtregname" runat="server" CssClass="form-control" placeholder="e.g. Jordan Miller"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="regEmail">Email Address</label>
-                    <input type="email" id="regEmail" class="form-control" placeholder="name@example.com" />
-                    <div class="invalid-feedback" id="regEmailErr">Please enter a valid email address.</div>
+                    <label class="form-label" for="<%= txtregemail.ClientID %>">Email Address</label>
+                    <asp:TextBox ID="txtregemail" runat="server" TextMode="Email" CssClass="form-control" placeholder="name@example.com"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="regAccountType">I want to:</label>
-                    <select id="regAccountType" class="form-control">
-                        <option value="buyer">Buy digital assets &amp; templates</option>
-                        <option value="seller">Sell my templates &amp; digital products</option>
-                    </select>
+                    <label class="form-label" for="<%= ddlrole.ClientID %>">I want to:</label>
+                    <asp:DropDownList ID="ddlrole" runat="server" CssClass="form-control">
+                        <asp:ListItem Value="Buyer">Buy digital assets &amp; templates (Buyer)</asp:ListItem>
+                        <asp:ListItem Value="Seller">Sell my templates &amp; digital products (Seller)</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="regPassword">Password</label>
-                    <input type="password" id="regPassword" class="form-control" placeholder="Minimum 6 characters" />
-                    <div class="invalid-feedback" id="regPasswordErr">Password must be at least 6 characters.</div>
+                    <label class="form-label" for="<%= txtregmobile.ClientID %>">Mobile Number</label>
+                    <asp:TextBox ID="txtregmobile" runat="server" CssClass="form-control" placeholder="e.g. 9876543210"></asp:TextBox>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="<%= txtregcity.ClientID %>">City</label>
+                    <asp:TextBox ID="txtregcity" runat="server" CssClass="form-control" placeholder="e.g. Rajkot"></asp:TextBox>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="<%= txtregpass.ClientID %>">Password</label>
+                    <asp:TextBox ID="txtregpass" runat="server" TextMode="Password" CssClass="form-control" placeholder="Minimum 6 characters"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
                     <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; cursor: pointer; color: var(--text-secondary);">
-                        <input type="checkbox" id="regAgree" checked style="margin-top: 3px; accent-color: var(--primary);" />
+                        <input type="checkbox" id="regAgree" checked="checked" style="margin-top: 3px; accent-color: var(--primary);" />
                         <span>I agree to ByteMarket's Terms of Service and Privacy Policy.</span>
                     </label>
                 </div>
 
-                <button type="button" class="btn btn-teal btn-block btn-lg" id="btnSubmitRegister">
-                    Create Free Account
-                </button>
-            </div>
-
-            <div style="text-align: center; margin-top: 24px; font-size: 0.85rem; color: var(--text-muted);">
-                Frontend demonstration only. No database connectivity required.
+                <asp:Button ID="btnreg" runat="server" Text="Create Free Account" CssClass="btn btn-teal btn-block btn-lg" OnClick="btnreg_Click" />
             </div>
         </div>
     </div>
@@ -116,8 +113,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptsContent" runat="server">
     <script>
-        let selectedRole = 'buyer';
-
         function switchAuthTab(tab) {
             const loginBtn = document.getElementById('tabLoginBtn');
             const regBtn = document.getElementById('tabRegisterBtn');
@@ -137,112 +132,12 @@
             }
         }
 
-        function quickFill(email, role) {
-            document.getElementById('loginEmail').value = email;
-            document.getElementById('loginPassword').value = 'demo12345';
-            selectedRole = role;
-            ByteMarketStore.showToast(`Selected ${role.toUpperCase()} demo profile`, 'teal');
+        function quickFill(email, password) {
+            const emailBox = document.getElementById('<%= txteml.ClientID %>');
+            const passBox = document.getElementById('<%= txtpass.ClientID %>');
+            if (emailBox) emailBox.value = email;
+            if (passBox) passBox.value = password;
+            switchAuthTab('login');
         }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('btnSubmitLogin').addEventListener('click', function (e) {
-                e.preventDefault();
-                const emailEl = document.getElementById('loginEmail');
-                const passEl = document.getElementById('loginPassword');
-                let valid = true;
-
-                if (!emailEl.value.includes('@') || !emailEl.value.includes('.')) {
-                    emailEl.classList.add('is-invalid');
-                    valid = false;
-                } else {
-                    emailEl.classList.remove('is-invalid');
-                }
-
-                if (passEl.value.length < 6) {
-                    passEl.classList.add('is-invalid');
-                    valid = false;
-                } else {
-                    passEl.classList.remove('is-invalid');
-                }
-
-                if (!valid) return;
-
-                const emailVal = emailEl.value.toLowerCase();
-                let role = selectedRole;
-                let name = 'Alex Rivera';
-                if (emailVal.includes('seller') || emailVal.includes('marcus')) {
-                    role = 'seller';
-                    name = 'Marcus Vance';
-                } else if (emailVal.includes('admin') || emailVal.includes('sarah')) {
-                    role = 'admin';
-                    name = 'Sarah Connor';
-                }
-
-                ByteMarketStore.setUser({
-                    isLoggedIn: true,
-                    name: name,
-                    email: emailVal,
-                    role: role,
-                    avatarText: name.split(' ').map(n => n[0]).join('')
-                });
-
-                ByteMarketStore.showToast(`Welcome back, ${name}! Redirecting...`, 'success');
-                setTimeout(() => {
-                    const base = ByteMarketStore.getBaseUrl();
-                    if (role === 'seller') window.location.href = base + 'Seller/SellerDashboard.aspx';
-                    else if (role === 'admin') window.location.href = base + 'Admin/AdminDashboard.aspx';
-                    else window.location.href = base + 'User/BuyerDashboard.aspx';
-                }, 600);
-            });
-
-            document.getElementById('btnSubmitRegister').addEventListener('click', function (e) {
-                e.preventDefault();
-                const nameEl = document.getElementById('regName');
-                const emailEl = document.getElementById('regEmail');
-                const passEl = document.getElementById('regPassword');
-                let valid = true;
-
-                if (nameEl.value.trim().length < 2) {
-                    nameEl.classList.add('is-invalid');
-                    valid = false;
-                } else {
-                    nameEl.classList.remove('is-invalid');
-                }
-
-                if (!emailEl.value.includes('@') || !emailEl.value.includes('.')) {
-                    emailEl.classList.add('is-invalid');
-                    valid = false;
-                } else {
-                    emailEl.classList.remove('is-invalid');
-                }
-
-                if (passEl.value.length < 6) {
-                    passEl.classList.add('is-invalid');
-                    valid = false;
-                } else {
-                    passEl.classList.remove('is-invalid');
-                }
-
-                if (!valid) return;
-
-                const role = document.getElementById('regAccountType').value;
-                const name = nameEl.value.trim();
-
-                ByteMarketStore.setUser({
-                    isLoggedIn: true,
-                    name: name,
-                    email: emailEl.value.trim(),
-                    role: role,
-                    avatarText: name.split(' ').map(n => n[0]).join('').substring(0, 2)
-                });
-
-                ByteMarketStore.showToast('Account registered successfully! Redirecting...', 'success');
-                setTimeout(() => {
-                    const base = ByteMarketStore.getBaseUrl();
-                    if (role === 'seller') window.location.href = base + 'Seller/SellerDashboard.aspx';
-                    else window.location.href = base + 'User/BuyerDashboard.aspx';
-                }, 600);
-            });
-        });
     </script>
 </asp:Content>
