@@ -26,23 +26,11 @@
                 </div>
             </div>
 
-            <!-- Demo Fast-Login Strip -->
-            <div style="background: var(--bg-subtle); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px; margin-bottom: 24px;">
-                <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">
-                    Fast Demo Fill:
-                </div>
-                <div class="demo-account-pills">
-                    <span class="demo-pill" onclick="quickFill('alex.rivera@example.com', 'demo12345')">Buyer Demo</span>
-                    <span class="demo-pill" onclick="quickFill('marcus.vance@example.com', 'demo12345')">Seller Demo</span>
-                    <span class="demo-pill" onclick="quickFill('sarah.admin@bytemarket.io', 'demo12345')">Admin Demo</span>
-                </div>
-            </div>
-
             <!-- Form: Sign In -->
             <div id="loginFormPanel">
                 <div class="form-group">
                     <label class="form-label" for="<%= txteml.ClientID %>">Email Address</label>
-                    <asp:TextBox ID="txteml" runat="server" TextMode="Email" CssClass="form-control" placeholder="name@example.com"></asp:TextBox>
+                    <asp:TextBox ID="txteml" runat="server" TextMode="Email" CssClass="form-control" placeholder="Enter your email address"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
@@ -50,7 +38,7 @@
                         <label class="form-label" for="<%= txtpass.ClientID %>" style="margin-bottom: 0;">Password</label>
                         <a href="#" onclick="alert('Password reset link sent to your email.'); return false;" style="font-size: 0.82rem;">Forgot password?</a>
                     </div>
-                    <asp:TextBox ID="txtpass" runat="server" TextMode="Password" CssClass="form-control" placeholder="••••••••"></asp:TextBox>
+                    <asp:TextBox ID="txtpass" runat="server" TextMode="Password" CssClass="form-control" placeholder="Enter your password"></asp:TextBox>
                 </div>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
@@ -67,7 +55,7 @@
             <div id="registerFormPanel" style="display: none;">
                 <div class="form-group">
                     <label class="form-label" for="<%= txtregname.ClientID %>">Full Name</label>
-                    <asp:TextBox ID="txtregname" runat="server" CssClass="form-control" placeholder="e.g. Jordan Miller"></asp:TextBox>
+                    <asp:TextBox ID="txtregname" runat="server" CssClass="form-control" placeholder="e.g. John Doe"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
@@ -130,14 +118,6 @@
                 regPanel.style.display = 'block';
                 loginPanel.style.display = 'none';
             }
-        }
-
-        function quickFill(email, password) {
-            const emailBox = document.getElementById('<%= txteml.ClientID %>');
-            const passBox = document.getElementById('<%= txtpass.ClientID %>');
-            if (emailBox) emailBox.value = email;
-            if (passBox) passBox.value = password;
-            switchAuthTab('login');
         }
     </script>
 </asp:Content>
